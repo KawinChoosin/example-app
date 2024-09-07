@@ -52,8 +52,25 @@
                 {{ __('Bio Information') }}
             </h4>
             <p class="mt-2">
-                {{$user->bio->bio ?? 'No bio available'}}
+                {{ $user->bio->bio ?? 'No bio available' }}
             </p>
+        </div>
+
+        <!-- Personality Information Section -->
+        <div class="mt-4">
+            <h4 class="font-medium text-blue-900">
+                {{ __('Personality Type') }}
+            </h4>
+            @if ($personal)
+                <p class="mt-2">
+                    <strong>Type:</strong> {{ $personal->type }}<br>
+                    <strong>Description:</strong> {{ $personal->description ?? 'No description available' }}
+                </p>
+            @else
+                <p class="mt-2">
+                    {{ __('No personality type selected.') }}
+                </p>
+            @endif
         </div>
 
         <div class="flex items-center gap-4">
@@ -68,18 +85,13 @@
                     class="text-sm text-gray-600 dark:text-gray-400"
                 >{{ __('Saved.') }}</p>
             @endif
-            <!-- <h4 class="font-medium text-blue-900">
-                {{ __('Bio Information') }}
-            </h4>
-            <p class="mt-2">
-                {{$user->bio->bio ?? 'No bio available'}}
-            </p> -->
+      
             <a href="{{ route('profile.show-bio') }}" class="inline-flex items-center
             px-4 py-2 bg-blue-600 border border-transparent rounded-md font-semibold
             text-xs text-white uppercase tracking-widest hover:bg-blue-500 active:bg-
             blue-700 focus:outline-none focus:border-blue-700 focus:ring ring-blue-300
             disabled:opacity-25 transition ease-in-out duration-150">
-            {{ __('Click to Manage Bio') }}
+            {{ __('Click to Manage Bio and Personality') }}
             </a>
 
         </div>

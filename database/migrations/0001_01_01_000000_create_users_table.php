@@ -11,14 +11,28 @@ return new class extends Migration
      */
     public function up(): void
     {
+        Schema::create('personals', function (Blueprint $table) {
+            $table->id();
+            $table->string('type'); // e.g., 'Introvert', 'Extrovert'
+            $table->text('description')->nullable(); // Optional
+            $table->timestamps();
+            
+        });
         Schema::create('users', function (Blueprint $table) {
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
+            $table->unsignedBigInteger('personality_type_id')->nullable(); // Match the type of personals' id
             $table->rememberToken();
             $table->timestamps();
+
+            // Foreign key constraint
+            $table->foreign('personality_type_id')
+                ->references('id')
+                ->on('personals')
+                ->onDelete('cascade');
         });
 
         Schema::create('password_reset_tokens', function (Blueprint $table) {
@@ -35,6 +49,8 @@ return new class extends Migration
             $table->longText('payload');
             $table->integer('last_activity')->index();
         });
+
+        
     }
 
     /**

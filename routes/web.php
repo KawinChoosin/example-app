@@ -23,9 +23,15 @@ Route::middleware('auth')->group(function () {
      Route::get('/profile/bio', [UserController::class, 'showBio'])->name('profile.show-bio');
      // Route to handle updating the bio
      Route::patch('/profile/bio', [UserController::class, 'updateBio'])->name('profile.update-bio');
+
 });
 
 Route::middleware('auth')->group(function () {
-    Route::resource('diary', DiaryEntryController::class); });
+    Route::resource('diary', DiaryEntryController::class); 
+});
+
+// Route to show the bio page
+Route::get('/profile/bio', [UserController::class, 'showBio'])->name('profile.show-bio');
+
 
 require __DIR__.'/auth.php';
