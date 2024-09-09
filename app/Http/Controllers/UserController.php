@@ -52,6 +52,23 @@ class UserController extends Controller
         ]);
     }
 
+    public function showPersonal()
+    {
+        $user = Auth::user(); // Retrieve the currently authenticated user
+        $bio = $user->bio; // Access the related bio for the user
+        $personals = Personal::all(); // Retrieve all personality types
+
+        $personalityTypeId = $user->personality_type_id;
+        $personal = Personal::find($personalityTypeId); // Fetch the Personality record based on the personality_type_id
+
+        return view('profile.show-bio', [
+            'user' => $user,
+            'bio' => $bio,
+            'personals' => $personals,
+            'personal' => $personal, // Pass the personality data to the view
+        ]);
+    }
+
     public function updateBio(Request $request)
     {
         $user = Auth::user();

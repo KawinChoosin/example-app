@@ -48,30 +48,32 @@
         </div>
 
         <div>
-            <h4 class="font-medium text-blue-900">
+            <h4 class="mt-1  dark:text-gray-100">
                 {{ __('Bio Information') }}
             </h4>
-            <p class="mt-2">
+            <p class="mt-3  dark:text-gray-400">
                 {{ $user->bio->bio ?? 'No bio available' }}
             </p>
         </div>
 
         <!-- Personality Information Section -->
         <div class="mt-4">
-            <h4 class="font-medium text-blue-900">
-                {{ __('Personality Type') }}
-            </h4>
-            @if ($personal)
-                <p class="mt-2">
-                    <strong>Type:</strong> {{ $personal->type }}<br>
-                    <strong>Description:</strong> {{ $personal->description ?? 'No description available' }}
-                </p>
-            @else
-                <p class="mt-2">
-                    {{ __('No personality type selected.') }}
-                </p>
-            @endif
-        </div>
+        <h4 class="font-medium dark:text-gray-100">
+            {{ __('Personality Type') }}
+        </h4>
+
+        <!-- user->personalityType-> -->
+       
+            <p class="mt-2">
+                <strong class="mt-3 dark:text-gray-100">Type:</strong> 
+                <p class="dark:text-gray-400">{{ $user->personalityType->type ?? 'No description available'  }}</p>
+                <strong class="dark:text-gray-100">Description:</strong> 
+                <p class="dark:text-gray-400">{{ $user->personalityType->description ?? 'No description available' }}</p>
+            </p>
+       
+          
+       
+    </div>
 
         <div class="flex items-center gap-4">
             <x-primary-button>{{ __('Save') }}</x-primary-button>
