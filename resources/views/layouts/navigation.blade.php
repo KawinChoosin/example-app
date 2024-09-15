@@ -20,6 +20,9 @@
                     <x-nav-link :href="route('diary.index')" :active="request()->routeIs('diary.index')">
                         {{ __('Diary') }}
                     </x-nav-link>
+                    <x-nav-link :href="route('getconflict.index')" :active="request()->routeIs('getconflict.index')">
+                        {{ __('Get Conflict') }}
+                    </x-nav-link>
                 </div>
             </div>
 
